@@ -33,6 +33,7 @@ class AddDoctorPage:
             return element
 
 
+
     def doctorGenderOptions(self):
         try:
             locateType, locateExpression = self.AddDoctorOptions['AddDoctorPage.doctorGenderOptions'.lower()].split('>')

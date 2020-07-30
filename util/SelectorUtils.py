@@ -2,6 +2,7 @@
 
 import random
 import time
+from selenium import webdriver
 
 
 
@@ -21,8 +22,14 @@ class SelectorUtils(object):
             ran_num = str(random.randint(1, ul_li_sum))
             li_list = browser.find_elements_by_xpath(options_location + '[' + ran_num + ']')
             # li_list[0].click()
+            print(li_list)
             # print(li_list[0].text)
             browser.execute_script('arguments[0].click()', li_list[0])
             return li_list[0].text
         # inner_text = project_type_options.get_attribute('innerText')
         # eles =  str(inner_text.split()).decode('unicode_escape')
+
+if __name__ == '__main__':
+    browser = webdriver.Chrome()
+    SelectorUtils().selector_choose(browser,
+)
