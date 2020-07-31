@@ -1,11 +1,12 @@
 from selenium import webdriver
 import os,re
+import time
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 class Ceshi(object):
-    def automatic_generation_case(self, account, password,url,login_url,xpath,account_id,password_id):
+    def automatic_generation_case(self, account, password,url,login_url,xpath,account_id,password_id,label):
         '''
 
         :param account: 登录账号
@@ -15,18 +16,29 @@ class Ceshi(object):
         :param xpath:  要解析的新增页面表单元素；'//div[contains(@class,"ant-col ant-form-item-label")]/label' 可不修改 大部分通用
         :param account_id: 登录账号 定位元素id
         :param password_id: 登录密码 定位元素id
+        :param label: label属性
         :return:
         '''
 
         driver = webdriver.Chrome()
+        current_window = driver.current_window_handle
         self.login_without_qr(driver, account, password,login_url,account_id,password_id)
 
-        driver.get(url)
+
+        js = 'window.open("' + url + '");'
+        driver.execute_script(js)
+        # 页面中点击某个链接会弹出一个新的窗口，这样要去操作新窗口中的元素，这时就需要主机切换到新窗口进行操作。
+        # 定位到新开页面的句柄
+        handles = driver.window_handles
+        for handle in handles:
+            if handle == current_window:
+                continue
+        driver.switch_to.window(handle)
 
         allelements = driver.find_elements_by_xpath(xpath)
         label_fors=[]
         for elements in allelements:
-            label_fors.append(elements.get_attribute('for'))
+            label_fors.append(elements.get_attribute(label))
         with open(os.path.dirname(os.path.abspath('.'))+'/pageObjects/AddDoctorPageTemplate.py',mode='r') as f:
             content2=f.readlines()
         file_name = url.split('#')[1].split('?')[0].split('/')[-1].replace('-', '_') + '_' +url.split('#')[1].split('?')[0].split('/')[-2].replace('-', '_')
@@ -102,7 +114,6 @@ class Ceshi(object):
                 if '[AddDoctorPage]' in ic:
                     startcontent_page = content_page[:(g+1)]
                     endcontent_page = content_page[(g+1):]
-            print(startcontent_page)
             for u in startcontent_page:
                 if '[AddDoctorPage]' in u:
                     f.writelines(u.replace('AddDoctor', self.underline2_hump(file_name)))
@@ -114,6 +125,7 @@ class Ceshi(object):
                     if 'AddDoctorPage.doctorNameInput' in ic:
                         f.writelines(ic.replace('AddDoctor',self.underline_hump(file_name))
                                      .replace('doctorName', self.underline2_hump(d)))
+        print("写入成功")
 
 
         f.close()
@@ -165,19 +177,6 @@ class Ceshi(object):
         if len(submit_array) > 0:
             submit_array[0].click()
 
-            # 等待元素加载
-            WebDriverWait(browser, 30, 0.5).until(
-                EC.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/div/header/div[2]/a/div/p[1]'))
-            )
-            # 判断是否登录成功
-            real_account = browser.find_element_by_xpath('//*[@id="app"]/div/div/header/div[2]/a/div/p[1]').text
-
-            if real_account == account:
-                return 1
-            else:
-                print('登录失败')
-                return 0
-
         else:
             print('未获取到提交按钮')
             return 0
@@ -221,4 +220,5 @@ if __name__ == "__main__":
     xpath='//div[contains(@class,"ant-col ant-form-item-label")]/label'
     account_id='email'
     password_id='password'
-    Ceshi().automatic_generation_case(account, password,bb,login_url,xpath,account_id,password_id)
+    label='for'
+    Ceshi().automatic_generation_case(account, password,bb,login_url,xpath,account_id,password_id,label)
