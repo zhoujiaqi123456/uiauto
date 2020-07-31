@@ -5,15 +5,25 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 class Ceshi(object):
-    def automatic_generation_case(self, account, password,url,login_url):
+    def automatic_generation_case(self, account, password,url,login_url,xpath,account_id,password_id):
+        '''
+
+        :param account: 登录账号
+        :param password: 登录密码
+        :param url: 要定位的新增页面的url
+        :param login_url: 登录url
+        :param xpath:  要解析的新增页面表单元素；'//div[contains(@class,"ant-col ant-form-item-label")]/label' 可不修改 大部分通用
+        :param account_id: 登录账号 定位元素id
+        :param password_id: 登录密码 定位元素id
+        :return:
+        '''
 
         driver = webdriver.Chrome()
-        self.login_without_qr(driver, account, password,login_url)
-
+        self.login_without_qr(driver, account, password,login_url,account_id,password_id)
 
         driver.get(url)
 
-        allelements = driver.find_elements_by_xpath('//div[contains(@class,"ant-col ant-form-item-label")]/label')
+        allelements = driver.find_elements_by_xpath(xpath)
         label_fors=[]
         for elements in allelements:
             label_fors.append(elements.get_attribute('for'))
@@ -109,7 +119,7 @@ class Ceshi(object):
         f.close()
 
 
-    def login_without_qr(self, browser, account, password,login_url):
+    def login_without_qr(self, browser, account, password,login_url,account_id,password_id):
         """
         :param browser: 浏览器
         :param account: 账号
@@ -137,14 +147,14 @@ class Ceshi(object):
         browser.maximize_window()
 
         # 输入账号
-        account_input = browser.find_element_by_id('email')
+        account_input = browser.find_element_by_id(account_id)
         if account_input is None:
             print('未找到账号输入框')
             return 0
         account_input.click()
         account_input.send_keys(account)
         # 输入密码
-        password_input = browser.find_element_by_id('password')
+        password_input = browser.find_element_by_id(password_id)
         if password_input is None:
             print('未找到密码输入框')
             return 0
@@ -207,4 +217,8 @@ if __name__ == "__main__":
     aa = 'http://47.99.104.87:6773/#/logistics/whole-price/add?type=0'
     bb = 'http://47.99.104.87:6773/#/merchants/supplier-management/company-add'
     cc='http://47.99.104.87:6773/#/merchants/customer-administration/company-add'
-    Ceshi().automatic_generation_case(account, password,aa,login_url)
+    #xpath 可不修改，通用性
+    xpath='//div[contains(@class,"ant-col ant-form-item-label")]/label'
+    account_id='email'
+    password_id='password'
+    Ceshi().automatic_generation_case(account, password,bb,login_url,xpath,account_id,password_id)
