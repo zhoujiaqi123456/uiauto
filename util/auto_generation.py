@@ -25,8 +25,11 @@ class Ceshi(object):
         self.login_without_qr(driver, account, password,login_url,account_id,password_id)
 
 
+
+
         js = 'window.open("' + url + '");'
         driver.execute_script(js)
+
         # 页面中点击某个链接会弹出一个新的窗口，这样要去操作新窗口中的元素，这时就需要主机切换到新窗口进行操作。
         # 定位到新开页面的句柄
         handles = driver.window_handles
@@ -217,8 +220,8 @@ if __name__ == "__main__":
     bb = 'http://47.99.104.87:6773/#/merchants/supplier-management/company-add'
     cc='http://47.99.104.87:6773/#/merchants/customer-administration/company-add'
     #xpath 可不修改，通用性
-    xpath='//div[contains(@class,"ant-col ant-form-item-label")]/label'
+    xpath='//div[contains(@class,"ant-form-item-label")]/label'
     account_id='email'
     password_id='password'
     label='for'
-    Ceshi().automatic_generation_case(account, password,bb,login_url,xpath,account_id,password_id,label)
+    Ceshi().automatic_generation_case(account, password,aa,login_url,xpath,account_id,password_id,label)

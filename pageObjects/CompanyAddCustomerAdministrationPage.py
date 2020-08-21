@@ -73,6 +73,15 @@ class CompanyAddCustomerAdministrationPage:
         else:
             logger.info("找到元素"+locateExpression)
             return element
+    def countryCodeInput(self):
+        try:
+            locateType, locateExpression = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.doctorNameInput'.lower()].split('>')
+            element = getElement(self.driver, locateType, locateExpression)
+        except Exception as e:
+            logger.error(e)
+        else:
+            logger.info("找到元素"+locateExpression)
+            return element
     def addrInput(self):
         try:
             locateType, locateExpression = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.doctorNameInput'.lower()].split('>')
@@ -181,15 +190,6 @@ class CompanyAddCustomerAdministrationPage:
         else:
             logger.info("找到元素"+locateExpression)
             return element
-    def financialSupplierCodeInput(self):
-        try:
-            locateType, locateExpression = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.doctorNameInput'.lower()].split('>')
-            element = getElement(self.driver, locateType, locateExpression)
-        except Exception as e:
-            logger.error(e)
-        else:
-            logger.info("找到元素"+locateExpression)
-            return element
     def relateSalesmanCodeListInput(self):
         try:
             locateType, locateExpression = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.doctorNameInput'.lower()].split('>')
@@ -227,6 +227,15 @@ class CompanyAddCustomerAdministrationPage:
             logger.info("找到元素"+locateExpression)
             return element
     def bankCreatorInput(self):
+        try:
+            locateType, locateExpression = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.doctorNameInput'.lower()].split('>')
+            element = getElement(self.driver, locateType, locateExpression)
+        except Exception as e:
+            logger.error(e)
+        else:
+            logger.info("找到元素"+locateExpression)
+            return element
+    def sendMailPersonInput(self):
         try:
             locateType, locateExpression = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.doctorNameInput'.lower()].split('>')
             element = getElement(self.driver, locateType, locateExpression)
@@ -281,6 +290,15 @@ class CompanyAddCustomerAdministrationPage:
             logger.info("找到元素"+locateExpression)
             return element
     def levelInput(self):
+        try:
+            locateType, locateExpression = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.doctorNameInput'.lower()].split('>')
+            element = getElement(self.driver, locateType, locateExpression)
+        except Exception as e:
+            logger.error(e)
+        else:
+            logger.info("找到元素"+locateExpression)
+            return element
+    def mailEmailInput(self):
         try:
             locateType, locateExpression = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.doctorNameInput'.lower()].split('>')
             element = getElement(self.driver, locateType, locateExpression)

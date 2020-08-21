@@ -16,7 +16,7 @@ class CompanyAddCustomerAdministrationAction(object):
         self.CompanyAddCustomerAdministrationOptions = self.parseCF.getItemsSection('CompanyAddCustomerAdministrationPage')
         logger.info("CompanyAddCustomerAdministration..")
 
-    def CompanyAddCustomerAdministrationAction(self,name, companyPrefix, nameEn, invoice, country, usci, tel, addr, companyCode, settleType, businessType, startDate, endDate, companySize, contractor, contractorTel, financialOfficer, financialTel, financialClientCode, financialSupplierCode, relateSalesmanCodeList, relateCsrCodeList, bankCard, bankName, bankCreator, mailAddr, eposit, currency, credit, isSupplier, level, clientType, contractFile
+    def CompanyAddCustomerAdministrationAction(self,name, companyPrefix, nameEn, invoice, country, usci, tel, countryCode, addr, companyCode, settleType, businessType, startDate, endDate, companySize, contractor, contractorTel, financialOfficer, financialTel, financialClientCode, relateSalesmanCodeList, relateCsrCodeList, bankCard, bankName, bankCreator, sendMailPerson, mailAddr, eposit, currency, credit, isSupplier, level, mailEmail, clientType, contractFile
 ):
         '''
         读取传参数据操作
@@ -72,6 +72,13 @@ class CompanyAddCustomerAdministrationAction(object):
         #参数为单下拉框 选择这个，否则删除
         TelSelectorSelector = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.TelSelectorSelector'.lower()].split('>')[1]
         TelOptionsOptions = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.TelOptionsOptions'.lower()].split('>')[1]
+
+        #若参数为文本框选择这个，否则删除
+        self.CompanyAddCustomerAdministration.countryCodeInput().send_keys(countryCode)
+
+        #参数为单下拉框 选择这个，否则删除
+        CountryCodeSelectorSelector = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.CountryCodeSelectorSelector'.lower()].split('>')[1]
+        CountryCodeOptionsOptions = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.CountryCodeOptionsOptions'.lower()].split('>')[1]
 
         #若参数为文本框选择这个，否则删除
         self.CompanyAddCustomerAdministration.addrInput().send_keys(addr)
@@ -158,13 +165,6 @@ class CompanyAddCustomerAdministrationAction(object):
         FinancialClientCodeOptionsOptions = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.FinancialClientCodeOptionsOptions'.lower()].split('>')[1]
 
         #若参数为文本框选择这个，否则删除
-        self.CompanyAddCustomerAdministration.financialSupplierCodeInput().send_keys(financialSupplierCode)
-
-        #参数为单下拉框 选择这个，否则删除
-        FinancialSupplierCodeSelectorSelector = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.FinancialSupplierCodeSelectorSelector'.lower()].split('>')[1]
-        FinancialSupplierCodeOptionsOptions = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.FinancialSupplierCodeOptionsOptions'.lower()].split('>')[1]
-
-        #若参数为文本框选择这个，否则删除
         self.CompanyAddCustomerAdministration.relateSalesmanCodeListInput().send_keys(relateSalesmanCodeList)
 
         #参数为单下拉框 选择这个，否则删除
@@ -198,6 +198,13 @@ class CompanyAddCustomerAdministrationAction(object):
         #参数为单下拉框 选择这个，否则删除
         BankCreatorSelectorSelector = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.BankCreatorSelectorSelector'.lower()].split('>')[1]
         BankCreatorOptionsOptions = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.BankCreatorOptionsOptions'.lower()].split('>')[1]
+
+        #若参数为文本框选择这个，否则删除
+        self.CompanyAddCustomerAdministration.sendMailPersonInput().send_keys(sendMailPerson)
+
+        #参数为单下拉框 选择这个，否则删除
+        SendMailPersonSelectorSelector = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.SendMailPersonSelectorSelector'.lower()].split('>')[1]
+        SendMailPersonOptionsOptions = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.SendMailPersonOptionsOptions'.lower()].split('>')[1]
 
         #若参数为文本框选择这个，否则删除
         self.CompanyAddCustomerAdministration.mailAddrInput().send_keys(mailAddr)
@@ -240,6 +247,13 @@ class CompanyAddCustomerAdministrationAction(object):
         #参数为单下拉框 选择这个，否则删除
         LevelSelectorSelector = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.LevelSelectorSelector'.lower()].split('>')[1]
         LevelOptionsOptions = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.LevelOptionsOptions'.lower()].split('>')[1]
+
+        #若参数为文本框选择这个，否则删除
+        self.CompanyAddCustomerAdministration.mailEmailInput().send_keys(mailEmail)
+
+        #参数为单下拉框 选择这个，否则删除
+        MailEmailSelectorSelector = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.MailEmailSelectorSelector'.lower()].split('>')[1]
+        MailEmailOptionsOptions = self.CompanyAddCustomerAdministrationOptions['CompanyAddCustomerAdministrationPage.MailEmailOptionsOptions'.lower()].split('>')[1]
 
         #若参数为文本框选择这个，否则删除
         self.CompanyAddCustomerAdministration.clientTypeInput().send_keys(clientType)
