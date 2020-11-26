@@ -9,13 +9,20 @@ from selenium import webdriver
 class SelectorUtils(object):
     def selector_choose(self, browser, text_box_location, options_location):
         text_box = browser.find_element_by_xpath(text_box_location)
+        # 把 前端 密码框style="display: none;" 改成block
+        browser.execute_script("arguments[0].style.display = 'block';", text_box)
+
         text_box.click()
+        browser.implicitly_wait(5)
+
 
         # 获取下拉列表可选项目数量
         ul_li_list = browser.find_elements_by_xpath(options_location)
+        print(ul_li_list)
 
         ul_li_sum = len(ul_li_list)
-        # print "下拉列表可选数量：ul_li_sum:" + str(ul_li_sum)
+
+        print ("下拉列表可选数量：ul_li_sum:" + str(ul_li_sum))
 
         # 选中某一个选项
         if ul_li_sum > 0:

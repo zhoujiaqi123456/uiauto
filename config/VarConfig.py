@@ -4,7 +4,7 @@ import os
 #获取当前文件所在目录的父目录的绝对路径
 parentDirPath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #获取存放页面元素定位表达式文件的绝对路径
-pageElementLocatorPath = parentDirPath+r"/config/PageElementLocator.ini"
+pageElementLocatorPath = parentDirPath+r"/config/Add.ini"
 #获取数据文件存放的绝对路径
 dataFilePath = parentDirPath+r"/testData/测试数据.xlsx"
 
