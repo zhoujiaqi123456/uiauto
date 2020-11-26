@@ -9,8 +9,10 @@ class TestLogin():
         :param password: 密码
         :return: 0-发生错误；1-未发生错误
         """
-        browser = webdriver.Remote(command_executor='http://47.98.62.6:4444/wd/hub',
-            desired_capabilities=DesiredCapabilities.CHROME)
+        browser=webdriver.Chrome()
+
+        # browser = webdriver.Remote(command_executor='http://127.0.0.1:4444/wd/hub',
+        #     desired_capabilities=DesiredCapabilities.CHROME)
         # 获取浏览器当前标签页句柄
         current_window = browser.current_window_handle
         # 新开标签页打开网址
